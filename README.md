@@ -10,6 +10,10 @@
 
 ![imagem do projeto2](.../../public/assets/images/mokup-2.png)
 
+## 📽️ VIDEO DEMONSTRATIVO DO PROJETO FUNCIONANDO.
+
+https://github.com/user-attachments/assets/bfa45961-9a6e-414f-bcc2-d9f977562875
+
 ---
 
 ## 🚀 Contribuindo para o Projeto
