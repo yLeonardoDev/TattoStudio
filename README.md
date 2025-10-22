@@ -10,11 +10,6 @@
 
 ![imagem do projeto2](.../../public/assets/images/mokup-2.png)
 
-## 📽️ VIDEO DA APRESENTAÇÃO;
-
-![Video de explicação](.../../public/assets/images/Video_Explicacao-do-Projeto.mp4)
-
-
 ---
 
 ## 🚀 Contribuindo para o Projeto
