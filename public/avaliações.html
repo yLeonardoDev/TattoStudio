@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Studio Tattoo - Avaliações de Clientes</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="assets/images/favicon.png" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+
+  <!-- Background com efeito parallax -->
+  <div class="parallax-bg" id="parallax-bg1" style="background-image: url('assets/images/Fundo-Black.webp');"></div>
+
+  <header>
+    <!-- LOGO DA PAGINA -->
+    <div class="logo">
+      <a href="avaliações.html">
+        <img src="assets/images/logo.png" alt="Logo do Studio Tattoo" />
+      </a>
+    </div>
+
+    <!-- MENU DE NAVEGACAO -->
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="portfolio.html">Portfólio</a></li>
+        <li><a href="orçamentoCliente.html">Orçamento</a></li>
+        <li><a href="avaliações.html" class="active">Feedbacks</a></li>
+        <li id="login-btn"><a href="#" class="open-btn" onclick="openLogin()">Login</a></li>
+        <li id="perfil-btn" style="display:none;">
+          <a href="#" class="open-btn" onclick="openPerfil()">Meu Perfil</a>
+        </li>
+        <li id="logout-btn" style="display:none;"><a href="#" onclick="logout()">Sair</a></li>
+      </ul>
+    </nav>
+
+    <!-- MENU HAMBURGUER - Mobile -->
+    <div class="menu-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </header>
+
+  <!-- FORMULÁRIO PARA DESKTOP (Popup) -->
+  <div class="container-principal desktop-form">
+    <button class="close-btn">&times;</button>
+
+    <div class="form-container">
+      <span class="fundo-giratorio"></span>
+      <span class="fundo-giratorio-secundario"></span>
+      <!-- FORMULÁRIO DE LOGIN -->
+      <div class="formulario login">
+        <h2 class="titulo animacao" style="--i:0; --j:21">Login</h2>
+
+        <form onsubmit="return handleLogin(this)">
+          <div class="campo-input animacao" style="--i:1; --j:22">
+            <input type="email" name="email" required placeholder="Digite seu e-mail">
+            <i class='bx bxs-user'></i>
+          </div>
+
+          <div class="campo-input animacao" style="--i:2; --j:23">
+            <input type="password" name="senha" required class="password-input" placeholder="Digite sua senha">
+            <span class="toggle-password">👁️</span>
+          </div>
+
+          <!-- SPAN PARA MENSAGEM DE ERRO -->
+          <div id="login-error-container" style="min-height: 20px; margin-top: 10px;"></div>
+
+          <button type="submit" class="botao animacao" style="--i:3; --j:24">Login</button>
+
+          <div class="texto-link animacao" style="--i:5; --j:25">
+            <p>Não tem uma conta ainda? <a href="#" class="link-cadastro">Cadastrar-se</a></p>
+          </div>
+        </form>
+      </div>
+      <!-- INFORMAÇÕES DO LOGIN -->
+      <div class="info-texto login" style="color: white;">
+        <h2 class="animacao" style="--i:0; --j:20">Seja Bem Vindo(a)!</h2>
+        <p class="animacao" style="--i:1; --j:21">Aqui em nosso studio realizamos Tatto personalizadas</p>
+      </div>
+
+      <!-- FORMULÁRIO DE CADASTRO -->
+      <div class="formulario cadastro">
+        <h2 class="titulo animacao" style="--i:17; --j:0">Cadastrar-se</h2>
+
+        <form method="POST" action="../backend/php/cadastro.php">
+          <div class="campo-input animacao" style="--i:18; --j:1">
+            <input type="text" name="nome" required placeholder="Digite seu nome completo">
+            <i class='bx bxs-user'></i>
+          </div>
+
+          <div class="campo-input animacao" style="--i:19; --j:2">
+            <input type="email" name="email" required placeholder="Digite seu e-mail">
+            <i class='bx bxs-envelope'></i>
+          </div>
+
+          <!-- CAMPO CPF -->
+          <div class="campo-input animacao" style="--i:20; --j:3">
+            <input type="text" name="cpf" required maxlength="14" class="cpf-input" placeholder="Digite seu CPF">
+            <i class='bx bxs-id-card'></i>
+          </div>
+
+          <div class="campo-input animacao" style="--i:21; --j:4">
+            <input type="password" name="senha" required class="password-input" placeholder="Crie uma senha">
+            <span class="toggle-password">👁️</span>
+          </div>
+
+          <div class="campo-input animacao" style="--i:22; --j:5">
+            <input type="password" name="confirmar_senha" required class="password-input"
+              placeholder="Confirme sua senha">
+            <span class="toggle-password">👁️</span>
+          </div>
+
+          <button type="submit" class="botao animacao" style="--i:23;--j:6">Cadastrar-se</button>
+        </form>
+      </div>
+
+      <!-- INFORMAÇÕES DO CADASTRO -->
+      <div class="info-texto cadastro" style="color: white;">
+        <h2 class="animacao" style="--i:17; --j:0;">CADASTRO!</h2>
+        <p class="animacao" style="--i:18; --j:1;">Transforme suas ideias em arte! Faça seu cadastro, solicite
+          seu orçamento e dê o primeiro passo para realizar a tatuagem dos seus sonhos. Sua história,
+          eternizada na pele 🖤🎨
+        </p> <br><br><br>
+
+        <div class="texto-link animacao" style="--i:22; --j:5">
+          <p>Já tem uma conta? <a href="#" class="link-login">Login</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FORMULÁRIO PARA MOBILE (Página completa) -->
+  <div class="mobile-form-page" id="mobileFormPage">
+    <div class="mobile-form-container">
+      <header class="mobile-form-header">
+        <button class="mobile-back-btn" onclick="closeMobileForm()">
+          <i class='bx bx-arrow-back'></i>
+          Voltar
+        </button>
+        <h2>Login & Cadastro</h2>
+      </header>
+
+      <div class="mobile-form-content">
+        <!-- FORMULÁRIO DE LOGIN MOBILE -->
+        <div class="mobile-form-section active" id="mobileLoginSection">
+          <h3>Login</h3>
+          <form onsubmit="return handleLogin(this)">
+            <div class="mobile-input-group">
+              <input type="email" name="email" required placeholder="Digite seu e-mail">
+              <i class='bx bxs-envelope'></i>
+            </div>
+            <div class="mobile-input-group">
+              <input type="password" name="senha" required class="password-input" placeholder="Digite sua senha">
+              <span class="toggle-password">👁️</span>
+            </div>
+
+            <!-- SPAN PARA MENSAGEM DE ERRO MOBILE -->
+            <div id="mobile-login-error-container" style="min-height: 20px; margin-top: 10px;"></div>
+
+            <button type="submit" class="mobile-btn primary">Entrar</button>
+            <div class="mobile-form-link">
+              <p>Não tem conta? <a href="#" onclick="showMobileSection('cadastro')">Cadastre-se</a></p>
+            </div>
+          </form>
+        </div>
+
+        <!-- FORMULÁRIO DE CADASTRO MOBILE -->
+        <div class="mobile-form-section" id="mobileCadastroSection">
+          <h3>Cadastrar-se</h3>
+          <form method="POST" action="../backend/php/cadastro.php">
+            <div class="mobile-input-group">
+              <input type="text" name="nome" required placeholder="Digite seu nome completo">
+              <i class='bx bxs-user'></i>
+            </div>
+            <div class="mobile-input-group">
+              <input type="email" name="email" required placeholder="Digite seu e-mail">
+              <i class='bx bxs-envelope'></i>
+            </div>
+            <div class="mobile-input-group">
+              <input type="text" name="cpf" required maxlength="14" class="cpf-input" placeholder="Digite seu CPF">
+              <i class='bx bxs-id-card'></i>
+            </div>
+            <div class="mobile-input-group">
+              <input type="password" name="senha" required class="password-input" placeholder="Crie uma senha">
+              <span class="toggle-password">👁️</span>
+            </div>
+            <div class="mobile-input-group">
+              <input type="password" name="confirmar_senha" required class="password-input"
+                placeholder="Confirme sua senha">
+              <span class="toggle-password">👁️</span>
+            </div>
+            <button type="submit" class="mobile-btn primary">Cadastrar</button>
+            <div class="mobile-form-link">
+              <p>Já tem conta? <a href="#" onclick="showMobileSection('login')">Fazer login</a></p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <main>
+    <section class="avaliacoes-hero">
+      <div class="hero-content">
+        <h1>Avaliações</h1>
+        <p>Veja o que nossos clientes dizem sobre a experiência no Studio</p>
+      </div>
+    </section>
+
+    <section id="avaliacoes">
+      <div class="avaliacoes-container">
+        <h2>Depoimentos Reais</h2>
+
+        <div class="avaliacoes-grid">
+          <!-- CARDS DE AVALIAÇÃO (MANTIDOS IGUAIS) -->
+          <div class="avaliacao-card">
+            <div class="avaliacao-header">
+              <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Cliente 1" class="avaliacao-avatar">
+              <div class="avaliacao-info">
+                <h3 class="avaliacao-nome">Ana Carolina</h3>
+                <p class="avaliacao-data">15/05/2024</p>
+              </div>
+            </div>
+            <div class="avaliacao-estrelas">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+            <p class="avaliacao-texto">Fiquei impressionada com a atenção aos detalhes e o cuidado com a
+              higiene. Minha tatuagem ficou exatamente como eu imaginava, o artista foi paciente e me
+              explicou todo o processo. Sem dúvidas voltarei para fazer minha próxima arte!</p>
+            <p class="avaliacao-tatuagem"><i class="fas fa-tint"></i> Tatuagem de dragão japonês nas costas
+            </p>
+          </div>
+
+          <div class="avaliacao-card">
+            <div class="avaliacao-header">
+              <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Cliente 2" class="avaliacao-avatar">
+              <div class="avaliacao-info">
+                <h3 class="avaliacao-nome">Ricardo Almeida</h3>
+                <p class="avaliacao-data">02/06/2024</p>
+              </div>
+            </div>
+            <div class="avaliacao-estrelas">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+            <p class="avaliacao-texto">Profissionalismo em primeiro lugar! O ambiente é incrível, super
+              limpo e organizado. Fiz um cover-up que ficou perfeito, ninguém imagina que tinha outra
+              tatuagem ali antes. Obrigado pela arte sensacional!</p>
+            <p class="avaliacao-tatuagem"><i class="fas fa-tint"></i> Cover-up no braço direito</p>
+          </div>
+
+          <div class="avaliacao-card">
+            <div class="avaliacao-header">
+              <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Cliente 3" class="avaliacao-avatar">
+              <div class="avaliacao-info">
+                <h3 class="avaliacao-nome">Juliana Santos</h3>
+                <p class="avaliacao-data">22/04/2024</p>
+              </div>
+            </div>
+            <div class="avaliacao-estrelas">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+            </div>
+            <p class="avaliacao-texto">Primeira tatuagem e foi uma experiência maravilhosa! O artista foi
+              super atencioso, explicou tudo sobre os cuidados pós-tatuagem e me deixou super tranquila
+              durante o processo. A dor foi bem menor do que eu imaginava!</p>
+            <p class="avaliacao-tatuagem"><i class="fas fa-tint"></i> Flor minimalista no pulso</p>
+          </div>
+
+          <div class="avaliacao-card">
+            <div class="avaliacao-header">
+              <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Cliente 4" class="avaliacao-avatar">
+              <div class="avaliacao-info">
+                <h3 class="avaliacao-nome">Marcos Vinícius</h3>
+                <p class="avaliacao-data">10/05/2024</p>
+              </div>
+            </div>
+            <div class="avaliacao-estrelas">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+            <p class="avaliacao-texto">Já fiz várias tatuagens aqui e todas ficaram perfeitas. O Studio tem
+              uma energia incrível e os artistas são verdadeiros profissionais. Desta vez fiz um sleeve e
+              estou apaixonado pelo resultado!</p>
+            <p class="avaliacao-tatuagem"><i class="fas fa-tint"></i> Sleeve realista no braço esquerdo</p>
+          </div>
+
+          <div class="avaliacao-card">
+            <div class="avaliacao-header">
+              <img src="https://randomuser.me/api/portraits/women/54.jpg" alt="Cliente 5" class="avaliacao-avatar">
+              <div class="avaliacao-info">
+                <h3 class="avaliacao-nome">Fernanda Lima</h3>
+                <p class="avaliacao-data">30/03/2024</p>
+              </div>
+            </div>
+            <div class="avaliacao-estrelas">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+            <p class="avaliacao-texto">Adorei a experiência desde o primeiro contato. O atendimento foi
+              impecável e a tatuagem superou minhas expectativas. Fiz uma aquarela colorida que está linda
+              e recebo elogios todos os dias!</p>
+            <p class="avaliacao-tatuagem"><i class="fas fa-tint"></i> Tatuagem aquarela na coxa</p>
+          </div>
+
+          <div class="avaliacao-card">
+            <div class="avaliacao-header">
+              <img src="https://randomuser.me/api/portraits/men/76.jpg" alt="Cliente 6" class="avaliacao-avatar">
+              <div class="avaliacao-info">
+                <h3 class="avaliacao-nome">Carlos Eduardo</h3>
+                <p class="avaliacao-data">18/06/2024</p>
+              </div>
+            </div>
+            <div class="avaliacao-estrelas">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="far fa-star"></i>
+            </div>
+            <p class="avaliacao-texto">Ótimo atendimento e trabalho de alta qualidade. Fiz uma tatuagem
+              geométrica complexa e o artista foi super preciso. O único ponto foi o prazo que atrasou um
+              pouco, mas valeu a pena esperar pelo resultado final.</p>
+            <p class="avaliacao-tatuagem"><i class="fas fa-tint"></i> Tatuagem geométrica no peito</p>
+          </div>
+        </div>
+
+        <div class="cta-avaliacao">
+          <h3>Deixe sua avaliação!</h3>
+          <p>Nos conte sobre sua experiência no Studio Tattoo e ajude outras pessoas a descobrirem nosso
+            trabalho</p>
+          <a href="#" class="btn-avaliacao" onclick="openLogin()">Avaliar agora</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal de Perfil -->
+
+  <div id="perfilModal" class="modal-perfil">
+    <div class="perfil-container">
+      <div class="perfil-header">
+        <h2>Meu Perfil</h2>
+        <button class="close-perfil" onclick="closePerfil()">×</button>
+      </div>
+
+      <div class="perfil-content">
+        <!-- Menu Principal do Perfil -->
+        <div id="perfilMenu" class="perfil-section active">
+          <div class="perfil-info">
+            <div class="avatar">👤</div>
+            <h3 id="perfilUserName">Usuário</h3>
+            <p id="perfilUserEmail">carregando...</p>
+          </div>
+
+          <div class="perfil-options">
+            <button class="perfil-btn" onclick="showPerfilSection('email')">
+              📧 Atualizar E-mail
+            </button>
+            <button class="perfil-btn" onclick="showPerfilSection('senha')">
+              🔒 Alterar Senha
+            </button>
+            <button class="perfil-btn danger" onclick="confirmarExclusao()">
+              🗑️ Deletar Conta
+            </button>
+            <button class="perfil-btn secondary" onclick="closePerfil()">
+              ↩️ Voltar
+            </button>
+          </div>
+        </div>
+
+        <!-- Seção Atualizar E-mail -->
+
+        <div id="perfilEmail" class="perfil-section">
+          <h3>Atualizar E-mail</h3>
+          <form id="formAtualizarEmail" class="perfil-form" method="POST"
+            action="../backend/php/atualizar_email_processa.php">
+            <div class="campo-input">
+              <input type="email" name="novo_email" id="novoEmail" required placeholder="Digite o novo e-mail">
+            </div>
+            <div class="campo-input">
+              <input type="email" name="confirmar_email" id="confirmarEmail" required
+                placeholder="Confirme o novo e-mail">
+              <span class="erro-email" style="display: none; color: #ff6b6b; font-size: 12px;"></span>
+            </div>
+            <div class="campo-input">
+              <input type="password" name="senha_atual" required placeholder="Digite sua senha atual">
+            </div>
+            <div class="form-buttons">
+              <button type="submit" class="btn-confirmar">✅ Confirmar Alteração</button>
+              <button type="button" class="btn-voltar" onclick="showPerfilSection('menu')">↩️ Voltar</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Seção Alterar Senha -->
+
+        <div id="perfilSenha" class="perfil-section">
+          <h3>Alterar Senha</h3>
+          <form id="formAlterarSenha" class="perfil-form" method="POST"
+            action="../backend/php/atualizar_senha_processa.php">
+            <div class="campo-input">
+              <input type="password" name="senha_atual" required placeholder="Digite sua senha atual">
+            </div>
+            <div class="campo-input">
+              <input type="password" name="nova_senha" id="novaSenha" required minlength="6"
+                placeholder="Digite a nova senha">
+              <span class="toggle-password" onclick="togglePassword('novaSenha')">👁️</span>
+            </div>
+            <div class="campo-input">
+              <input type="password" name="confirmar_senha" id="confirmarSenha" required
+                placeholder="Confirme a nova senha">
+              <span class="toggle-password" onclick="togglePassword('confirmarSenha')">👁️</span>
+              <span class="erro-senha" style="display: none; color: #ff6b6b; font-size: 12px;"></span>
+            </div>
+            <div class="form-buttons">
+              <button type="submit" class="btn-confirmar">✅ Alterar Senha</button>
+              <button type="button" class="btn-voltar" onclick="showPerfilSection('menu')">↩️ Voltar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de Confirmação de Exclusão -->
+
+  <div id="confirmModal" class="modal-confirm">
+    <div class="confirm-container">
+      <h3>🗑️ Confirmar Exclusão</h3>
+      <p><strong>Atenção!</strong> Tem certeza que deseja deletar sua conta?</p>
+      <p style="color: #ff6b6b; font-size: 14px; margin-top: 10px;">
+        ⚠️ Esta ação é irreversível e você será automaticamente deslogado!
+      </p>
+      <div class="confirm-buttons">
+        <button class="btn-danger" onclick="deletarConta()">✅ Sim, Deletar Conta</button>
+        <button class="btn-voltar" onclick="fecharConfirmacao()">❌ Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ALERTA DE SUCESSO -->
+
+  <div class="alert-overlay" id="alertOverlay">
+    <div class="alert-modal success-alert">
+      <div class="alert-icon">
+        <i class='bx bxs-check-circle'></i>
+      </div>
+      <h3>Sucesso!</h3>
+      <p id="alertMessage">Suas alterações foram salvas com sucesso.</p>
+      <button class="btn-primary" onclick="fecharAlerta()">OK</button>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Horário de Funcionamento</h3>
+        <p>Segunda a Sexta: 10h - 20h</p>
+        <p>Sábado: 10h - 18h</p>
+        <p>Domingo: Fechado</p>
+      </div>
+      <div class="footer-section">
+        <h3>Contato</h3>
+        <p>Email: contato@studiotattoo.com</p>
+        <p>Telefone: (11) 98765-4321</p>
+        <div class="contato-opcoes">
+          <a href="https://web.whatsapp.com/" target="_blank">
+            <img src="assets/images/whatsapp-icon.png" alt="WhatsApp do estúdio" />
+          </a>
+          <a href="https://www.instagram.com" target="_blank">
+            <img src="assets/images/instagram-icon.png" alt="Instagram do estúdio" />
+          </a>
+        </div>
+      </div>
+      <div class="footer-section">
+        <h3>Localização</h3>
+        <p>Bairro da Liberdade</p>
+        <p>Rua Galvão Bueno, 312</p>
+        <p>São Paulo - SP</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Studio Tattoo. Todos os direitos reservados.</p>
+      <p class="developer-credit">
+        Desenvolvido por
+        <a href="https://yleonardodev.github.io/MEUS-LINKS/#" target="_blank" class="developer-link">
+          LC Developer
+        </a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="assets/js/script.js"></script>
+
+</body>
+
+</html>
